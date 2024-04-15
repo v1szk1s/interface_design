@@ -10,6 +10,7 @@ Application of Theory and Prototype Development
 
 
 ## Summary
+C&C Cinemas offers a streamlined and user-friendly platform designed to provide a hassle-free movie ticket booking experience. Our website focuses on simplifying the process of discovering available movies and purchasing tickets with ease. With a sleek and intuitive interface, users can effortlessly navigate through the latest movie releases, check showtimes, and secure their tickets in just a few clicks. Whether you're a casual moviegoer or a dedicated film enthusiast, C&C Cinemas caters to all your movie-watching needs. Say goodbye to the frustration of long queues and enjoy the convenience of booking your movie tickets online with C&C Cinemas.
 Brief description (200 words is sufficient) of the objectives of the proposed system and the implemented solution.
 
 ## A. INTRODUCTION
@@ -27,6 +28,12 @@ Movie theater
 Description of the users of the proposed system: "who" the users are, identification of their characteristics (e.g. age, physical characteristics, culture, personality, learning and working methods, experience with tools and systems similar to the one proposed), their objectives and motivations, level of knowledge/skills. If there is more than one user group, describe each one.
 B.1. PERSONAS
 Presentation of the "personas" (2 or 3 personas are enough, representative of the users)
+
+### Persona A
+![persona1](https://github.com/v1szk1s/interface_design/blob/main/docs/persona1.png)
+
+### Persona B
+![persona2](https://github.com/v1szk1s/interface_design/blob/main/docs/persona2.png)
 
 [Examples in Moodle slides "03 - User Analysis" - you can use persona templates, such as the one available at https://xtensio.com/user-persona/ ]
 ## C. TASK ANALYSIS
