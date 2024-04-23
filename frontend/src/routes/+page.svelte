@@ -1,8 +1,7 @@
 <script>
 
 import { Card, Button } from 'flowbite-svelte';
-import { base_url } from '$lib/common';
- import { Rating, AdvancedRating, ScoreRating } from 'flowbite-svelte';
+import { getPosterUrl } from '$lib/common';
 
 export let data;
 
@@ -13,8 +12,8 @@ export let data;
     <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
         {#each data.movies as movie}
             <Card padding="none" href="{movie.id}" img="{movie.img}" class="mx-auto">
-                <img src="{base_url + movie.poster_path}" alt="">
-                    <Button color="light">
+                <img src="{getPosterUrl(movie.poster_path)}" alt="">
+                    <Button href="/book/{movie.id}" color="light">
                         Get Ticket
                     </Button>
             </Card>

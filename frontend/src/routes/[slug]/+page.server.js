@@ -5,8 +5,6 @@ import { getMovieById } from '$lib/server/api';
 // @ts-expect-error
 export async function load({ params }) {
     const movie = await getMovieById(params.slug);
-    console.log(movie);
-
     return {
         movie
     };
