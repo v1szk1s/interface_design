@@ -3,6 +3,7 @@ import {getPosterUrl} from '$lib/common.js'
 import { Rating, AdvancedRating, ScoreRating, Button } from 'flowbite-svelte';
 
 export let data;
+
 </script>
 
 <div class="container grid grid-cols-2 gap-5 p-2 lg:w-3/4 mx-auto ">
@@ -26,7 +27,7 @@ export let data;
             {/each}
         </p>
             <div class="my-auto ms-auto">
-                <Button href="/book/{data.movie.id}" color="dark">
+                <Button href="/book/movie/{data.movie.id}" color="dark">
                     Book Ticket
                 </Button>
             </div>

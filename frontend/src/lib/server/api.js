@@ -1,6 +1,6 @@
 // @ts-nocheck
 import 'dotenv/config'
-import { getDay } from '$lib/common';
+import { getDay, sameDay } from '$lib/common';
 import { screenings } from '$lib/data.js';
 
 const options = {
@@ -29,15 +29,7 @@ async function getMovies() {
 }
 export { getMovies };
 
-function sameDay(d1, d2) {
-    return d1.getYear() === d2.getYear() &&
-           d1.getMonth() === d2.getMonth() &&
-           d1.getDate() === d2.getDate()
-}
 
-export async function getScreening(date) {
-    return screenings.filter(x => x.times.some(y => sameDay(date, y)))
-        .map(x => ( {...x, times: x.times
-                .filter( y => sameDay(date, y)) })
-        );
+export async function getScreenings() {
+    return screenings;
 }

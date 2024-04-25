@@ -13,7 +13,7 @@ export let data;
         {#each data.movies as movie}
             <Card padding="none" href="{movie.id}" img="{movie.img}" class="mx-auto">
                 <img src="{getPosterUrl(movie.poster_path)}" alt="">
-                    <Button href="/book/{movie.id}" color="light">
+                    <Button href="/book/movie/{movie.id}" color="light">
                         Get Ticket
                     </Button>
             </Card>

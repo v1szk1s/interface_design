@@ -1,13 +1,17 @@
 export const base_url = 'http://image.tmdb.org/t/p/original'
 
+export const sameDay = (d1, d2) => {
+    return d1.getYear() === d2.getYear() &&
+           d1.getMonth() === d2.getMonth() &&
+           d1.getDate() === d2.getDate()
+}
+
 export const getPosterUrl = (poster_path) => {
     return base_url + poster_path
 }
 
-export const getDay = (day) => {
-    if(typeof day.getDay === 'function'){
-        day = day.getDay()
-    }
-
-    return ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][day <= 0 ? day+6:day-1]
-}
+export const ChairState = {
+    FREE: 0,
+    RESERVED: 1,
+    IN_PROGRESS: 2
+};

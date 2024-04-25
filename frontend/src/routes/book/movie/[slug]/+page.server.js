@@ -13,20 +13,9 @@ export function load({ params }) {
         screenings = data;
     });
 
-    const screen = screenings.find(x => x.id == params.slug);
-    const movie = movies.find(x => x.id == screen.movieId);
-
     return {
-        screen,
-        movie
-    }
+        movie: movies.find(x => params.slug == x.id),
+        screenings: screenings.filter(x => x.movieId == params.slug)
+    };
 
 }
-
-export const actions = {
-    reserve: async ({ cookies, request }) => {
-        const data = await request.formData();
-        console.log('itt')
-        console.log(data.get("fullName"));
-    },
-};
