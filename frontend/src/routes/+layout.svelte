@@ -1,16 +1,18 @@
 <script>
 import "../app.pcss";
-import { page } from '$app/stores';
-import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 import { Footer, FooterCopyright, FooterLinkGroup, FooterLink, FooterIcon } from 'flowbite-svelte';
+import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, DarkMode } from 'flowbite-svelte';
 import { FacebookSolid, YoutubeSolid, TwitterSolid } from 'flowbite-svelte-icons';
-import { DarkMode } from 'flowbite-svelte';
+import { page } from '$app/stores';
+
+export let data;
 
 $: activeUrl = $page.url.pathname;
 let activeClass = 'text-white bg-green-700 md:bg-transparent md:text-green-700 md:dark:text-white dark:bg-green-600 md:dark:bg-transparent';
 let nonActiveClass = 'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-teal-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
 
 </script>
+
 <header>
     <Navbar  >
         <NavBrand href="/">
@@ -22,10 +24,20 @@ let nonActiveClass = 'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md
             <NavHamburger  />
         </div>
         <NavUl {activeUrl} {activeClass} {nonActiveClass}>
-            <NavLi href="/">Home</NavLi>
-            <NavLi href="/book">Booking</NavLi>
-            <NavLi href="/price">Pricing</NavLi>
-            <NavLi href="/contact">Contact</NavLi>
+
+            {#if data?.user}
+                <NavLi href="/admin/screenings">Add Screening</NavLi>
+                <NavLi href="/admin/bookings">Bookings</NavLi>
+                <form action="/logout" method="post">
+                    <button>Logout</button>
+                </form>
+            {:else}
+                <NavLi href="/">Home</NavLi>
+                <NavLi href="/book">Booking</NavLi>
+                <NavLi href="/price">Pricing</NavLi>
+                <NavLi href="/contact">Contact</NavLi>
+                <!-- <NavLi href="/login">Login</NavLi> -->
+            {/if}
         </NavUl>
     </Navbar>
 </header>

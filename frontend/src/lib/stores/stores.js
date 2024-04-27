@@ -1,12 +1,12 @@
 import { getMovies, getScreenings } from "$lib/server/api";
 import { writable } from "svelte/store";
 
-const MovieStore = writable(
+const movieStore = writable(
     await getMovies()
 ); 
 
-const ScreeningsStore = writable(
+const screeningsStore = writable(
     await getScreenings()
 );
 
-export { MovieStore, ScreeningsStore };
+export { movieStore, screeningsStore };

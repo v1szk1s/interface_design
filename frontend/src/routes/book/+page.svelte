@@ -8,10 +8,15 @@ import { page } from '$app/stores';
 export let data;
 
 let date = new Date();
+
 function getDay(date) {
-    let day = date.getDay()
-    date.setDate(date.getDate() + 1);
-    return ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][day <= 0 ? day+6:day-1]
+    return ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"][date.getDay()]
+}
+function getLater(num) {
+    let d = new Date(date);
+    d.setDate(d.getDate() + num);
+    //console.log(d)
+    return d;
 }
 
 let movies = data.movies;
@@ -21,13 +26,12 @@ let activeClass = "text-teal-700";
 
 </script>
 {#if screenings.length > 0}
-     <!-- content here -->
 
 <Tabs class="flex justify-around">
     {#each Array(6) as _, i}
-        <TabItem {activeClass} open={i == 0} class="" title="{i == 0 ? 'Today':getDay(date)}">
+        <TabItem {activeClass} open={i == 0} class="" title="{i == 0 ? 'Today':getDay(getLater(i))}">
             <div class="lg:w-3/4 w-full mx-auto grid grid-cols-2 gap-3">
-                {#each new Set(screenings[i].map(x => x.movieId)) as movieId }
+                {#each new Set(data.screenings.filter(x => sameDay(x.date, getLater(i))).map(x => x.movieId)) as movieId }
                     <div class="grid grid-cols-2 gap-3">
                         <Card padding="none" href="{movies.get(movieId).id}" img="{movies.get(movieId).img}" class="mx-auto">
                             <img src="{getPosterUrl(movies.get(movieId).poster_path)}" alt="poster">
@@ -35,6 +39,7 @@ let activeClass = "text-teal-700";
                                     Check other times
                             </Button>
                         </Card>
+                            <!--
                         <div class="flex flex-col gap-3">
                             {#each movies.get(movieId).screenings.filter(x => sameDay(x.date, screenings[i][0].date)) as screening }
                                 <Button href="/book/{screening.id}">
@@ -42,6 +47,7 @@ let activeClass = "text-teal-700";
                                 </Button>
                             {/each}
                         </div>
+                        -->
                     </div>
                 {/each}
             </div>

@@ -1,8 +1,9 @@
 // @ts-nocheck
 import 'dotenv/config'
-import { getDay, sameDay } from '$lib/common';
-import { screenings } from '$lib/data.js';
+import PocketBase from 'pocketbase';
 
+const pb = new PocketBase('http://127.0.0.1:8090');
+     
 const options = {
   method: 'GET',
   headers: {
@@ -31,5 +32,6 @@ export { getMovies };
 
 
 export async function getScreenings() {
-    return screenings;
+    const screenings = await pb.collection('screenings').getFullList({ sort: '-created', });
+    return screenings.map(x => ({...x, date: new Date(x.date)}));
 }

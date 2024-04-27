@@ -1,15 +1,14 @@
-//import {movies} from "$lib/data.js";
-import { getMovies } from "$lib/server/api";
-import { MovieStore } from "$lib/stores/stores";
+import { movieStore } from "$lib/stores/stores";
+import { redirect } from "@sveltejs/kit";
 
 export async function load() {
     let movies = [];
 
-    MovieStore.subscribe(data => {
+    movieStore.subscribe(data => {
         movies = data;
     });
 
     return {
-        movies: movies
+        movies,
     }
 }

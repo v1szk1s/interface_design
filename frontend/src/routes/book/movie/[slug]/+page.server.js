@@ -1,15 +1,15 @@
-import { MovieStore, ScreeningsStore } from "$lib/stores/stores";
+import { movieStore, screeningsStore } from "$lib/stores/stores";
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-expect-error
 export function load({ params }) {
     let movies = [];
     let screenings = [];
 
-    MovieStore.subscribe(data => {
+    movieStore.subscribe(data => {
         movies = data;
     });
 
-    ScreeningsStore.subscribe(data => {
+    screeningsStore.subscribe(data => {
         screenings = data;
     });
 

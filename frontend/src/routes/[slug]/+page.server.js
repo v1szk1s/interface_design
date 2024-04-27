@@ -1,4 +1,3 @@
-import {movies} from "$lib/data.js";
 import { getMovieById } from '$lib/server/api';
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
