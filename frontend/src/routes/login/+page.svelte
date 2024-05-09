@@ -29,4 +29,7 @@ export let form;
 
         <Input class="hover:bg-primary-600 bg-primary-500 cursor-pointer" type="submit" value="Login" />
     </form>
+{#if form?.error}
+    <p class="m-4 py-2 bg-red-600 mx-auto text-center w-3/4 rounded"> { form.error } </p>
+{/if}
 </div>

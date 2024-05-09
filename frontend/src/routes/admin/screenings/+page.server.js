@@ -2,6 +2,7 @@ import { movieStore, screeningsStore } from "$lib/stores/stores";
 import 'dotenv/config'
 import PocketBase from 'pocketbase';
 import { fail } from "@sveltejs/kit";
+import { getScreenings } from "$lib/server/api";
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
@@ -24,6 +25,20 @@ export const load = async () => {
 }
 
 export const actions = {
+    delete: async ({ request }) => {
+        const formData = await request.formData();
+        const data = Object.fromEntries([...formData])
+        try {
+            const authData = await pb.admins.authWithPassword(process.env.EMAIL, process.env.PASSWD);
+            await pb.collection('screenings').delete(data.id);
+            screeningsStore.set(await getScreenings())
+            pb.authStore.clear();
+        }catch (error){
+            console.log(error.originalError.data)
+        }
+
+    },
+
     add: async ({ request }) => {
         const formData = await request.formData();
         const data = Object.fromEntries([...formData])

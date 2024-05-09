@@ -3,6 +3,7 @@ import { redirect, fail } from "@sveltejs/kit";
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-expect-error
 export function load({ params }) {
+    console.log("itt")
     let movies = [];
     let screenings = [];
 

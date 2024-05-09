@@ -5,6 +5,7 @@ import { enhance } from "$app/forms";
 
 export let data;
 export let form;
+
 $: movies = new Map(data.movies.map(x => { return [x.id, x] }));
 
 let selectedId;
@@ -13,13 +14,25 @@ let minute;
 
 </script>
 
-<div class="flex flex-col gap-3 w-3/4 mx-auto dark: text-white my-7">
+<div class="flex flex-col gap-3 w-3/4 mx-auto dark:text-white my-7">
     {#each data.screenings as screen}
+        {#if movies.get(screen.movieId)?.poster_path}
+
         <div class="flex gap-3">
             <img class="h-36 rounded" src="{getPosterUrl(movies.get(screen.movieId).poster_path)}" alt="poster">
-            <p>{movies.get(screen.movieId).original_title}</p>
-            <p>{screen.date}</p>
+            <div class="flex flex-col">
+                <p>{movies.get(screen.movieId).original_title}</p>
+                <p>{screen.date}</p>
+                    
+                <form action="?/delete" class="mt-auto ms-auto" method="post" use:enhance>
+                        <input type="hidden" name="id" value="{ screen.id }">
+                        <Input class="hover:bg-red-800 bg-red-600 cursor-pointer" type="submit" value="Delete" />
+                </form>
+
+            </div>
         </div>
+
+        {/if}
     {/each}
 </div>
 
@@ -53,7 +66,7 @@ let minute;
                 <Select placeholder="-" class="mt-2 w-20" items={Array.from({length: 24}, (_, i) => i).map((x, i) => ({value: i.toString().padStart(2, '0'), name: i.toString().padStart(2, '0')})) } bind:value={hour} />
                 <input type="hidden" name="hour" value={hour}>
                 <p class="my-auto mx-2">:</p>
-                <Select placeholder="-" class="mt-2 w-20" items={Array.from({length: 12}, (_, i) => i).map((x, i) => ({value: (i * 5).toString().padStart(2, '0'), name: (i * 5).toString().padStart(2, '0')})) } bind:value={minute} />,
+                <Select placeholder="-" class="mt-2 w-20" items={Array.from({length: 12}, (_, i) => i).map((x, i) => ({value: (i * 5).toString().padStart(2, '0'), name: (i * 5).toString().padStart(2, '0')})) } bind:value={minute} />
                 <input type="hidden" name="minute" value={minute}>
             </div>
         </Label>

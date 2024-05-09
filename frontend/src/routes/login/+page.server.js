@@ -37,10 +37,10 @@ export const actions = {
             );
         } catch (error) {
             //console.log(error.originalError.data.data);
-            console.log(error);
+            console.log(error.response);
             return fail(422, {
                 email: data.email,
-                //error: error
+                error: error?.response.message ?? ''
             });
         }
 

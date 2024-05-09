@@ -14,6 +14,7 @@ let hideAlert = false;
 
 $: chairs = Array(SEAT_SIZE).fill(ChairState.FREE);
 
+
 function toggle(index) {
     let state = chairs[index];
     if(state === ChairState.RESERVED) return;
@@ -40,7 +41,6 @@ function toggle(index) {
         <h1 class="md:text-2xl text-md">Booking ticket for:</h1>
         <div class="md:text-3xl text-lg">{ data.movie.original_title }</div>
     </div>
-    <h1 class="text-xl mx-auto my-auto justify-self-center">Time: <strong>{ data.screen.date.getHours() }:{ data.screen.date.getMinutes() == 0 ? "00":data.screen.date.getMinutes() }</strong></h1>
 </div>
 
 <div class="flex flex-wrap container lg:w-5/6 w-full md:px-10 px-2 mx-auto">

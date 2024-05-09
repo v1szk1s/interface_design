@@ -29,19 +29,18 @@ export const actions = {
             });
         }
 
-        // TODO  
-        //try {
-        //    const newUser = await locals.pb.collection('users').create(data);
-        //    const { token, user } = await locals.pb.collection('users').authWithPassword(data.email, data.password);
-        //
-        //    locals.pb.authStore.clear();
-        //} catch (error) {
-        //    console.log(error);
-        //    return fail(422, {
-        //        email: data.email,
-        //        error: error
-        //    });
-        //}
+        try {
+            const newUser = await locals.pb.collection('users').create(data);
+            //const { token, user } = await locals.pb.collection('users').authWithPassword(data.email, data.password);
+
+            locals.pb.authStore.clear();
+        } catch (error) {
+            console.log(error);
+            return fail(422, {
+                email: data.email,
+                error: error?.response.message ?? ''
+            });
+        }
 
         throw redirect(303, '/login');
     },
