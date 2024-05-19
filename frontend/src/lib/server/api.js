@@ -2,7 +2,6 @@
 import 'dotenv/config'
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
      
 const options = {
   method: 'GET',
@@ -32,6 +31,12 @@ export { getMovies };
 
 
 export async function getScreenings() {
-    const screenings = await pb.collection('screenings').getFullList({ sort: '-created', });
-    return screenings.map(x => ({...x, date: new Date(x.date)}));
+    try {
+        const pb = new PocketBase(process.env?.PB_URL || 'http://127.0.0.1:8090');
+        const screenings = await pb.collection('screenings').getFullList({ sort: '-created', });
+        return screenings.map(x => ({...x, date: new Date(x.date)}));
+    } catch (error) {
+        console.log("error:" + error);
+    }
+    return []
 }

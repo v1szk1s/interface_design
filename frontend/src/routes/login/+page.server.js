@@ -7,7 +7,7 @@ export const load = async ({ locals }) => {
 
 }
 export const actions = {
-    register: async ({ locals, request }) => {
+    login: async ({ locals, request }) => {
 
         const formData = await request.formData();
         const data = Object.fromEntries([...formData])
@@ -35,9 +35,11 @@ export const actions = {
                 data.email,
                 data.password,
             );
+            console.log(authData)
         } catch (error) {
             //console.log(error.originalError.data.data);
             console.log(error.response);
+            console.log(error.response.data);
             return fail(422, {
                 email: data.email,
                 error: error?.response.message ?? ''

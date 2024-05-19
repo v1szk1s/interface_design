@@ -8,7 +8,7 @@ export let form;
 </script>
 
 <div class="container lg:w-1/2 mx-auto">
-    <form method="POST" action="?/register" use:enhance>
+    <form method="POST" action="?/login" use:enhance>
         <div class="mb-3">
             <Label for="email" class="block mb-2">Email</Label>
             <Input id="email" name="email" type="email" placeholder="name@gmail.com" color="{(form?.errors && form.errors.includes("email")) ? "red":""}" >

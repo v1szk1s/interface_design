@@ -20,7 +20,7 @@ function getLater(num) {
 }
 
 let movies = data.movies;
-let screenings = data.screenings;
+let screenings = data?.screenings ?? [];
 
 let activeClass = "text-teal-700";
 

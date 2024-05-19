@@ -4,7 +4,7 @@ import PocketBase from 'pocketbase';
 import { fail } from "@sveltejs/kit";
 import { getScreenings } from "$lib/server/api";
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase(process.env?.PB_URL || 'http://127.0.0.1:8090');
 
 
 export const load = async () => {
@@ -14,7 +14,7 @@ export const load = async () => {
     movieStore.subscribe(data => {
         movies = data;
     });
-    screeningsStore.subscribe(data => {
+   screeningsStore.subscribe(data => {
         screenings = data;
     });
 
