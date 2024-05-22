@@ -7,6 +7,8 @@ export const handle = async ({ event, resolve }) => {
     try {
         
         event.locals.pb = new PocketBase(process.env?.PB_URL || 'http://127.0.0.1:8090');
+        console.log(process.env?.PB_URL);
+        console.log(event.locals.pb);
 
         // load the store data from the request cookie string
         event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
@@ -21,7 +23,7 @@ export const handle = async ({ event, resolve }) => {
 
         return response;
     } catch (error) {
-        console.log("error")
+        console.log("error: " + error)
         
     }
 }
